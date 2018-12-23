@@ -4,7 +4,7 @@
 #
 Name     : R-RANN
 Version  : 2.6
-Release  : 11
+Release  : 12
 URL      : https://cran.r-project.org/src/contrib/RANN_2.6.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RANN_2.6.tar.gz
 Summary  : Fast Nearest Neighbour Search (Wraps ANN Library) Using L2
