@@ -4,15 +4,20 @@
 #
 Name     : R-RANN
 Version  : 2.6.1
-Release  : 15
+Release  : 16
 URL      : https://cran.r-project.org/src/contrib/RANN_2.6.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RANN_2.6.1.tar.gz
 Summary  : Fast Nearest Neighbour Search (Wraps ANN Library) Using L2
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1
 Requires: R-RANN-lib = %{version}-%{release}
-Requires: R-rlang
+Requires: R-assertthat
+Requires: R-cli
+Requires: R-withr
+BuildRequires : R-assertthat
+BuildRequires : R-cli
 BuildRequires : R-rlang
+BuildRequires : R-withr
 BuildRequires : buildreq-R
 
 %description
@@ -38,10 +43,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546991240
+export SOURCE_DATE_EPOCH=1552843069
 
 %install
-export SOURCE_DATE_EPOCH=1546991240
+export SOURCE_DATE_EPOCH=1552843069
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -77,8 +82,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library RANN|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  RANN || :
 
 
 %files
@@ -104,7 +108,8 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/RANN/help/paths.rds
 /usr/lib64/R/library/RANN/html/00Index.html
 /usr/lib64/R/library/RANN/html/R.css
-/usr/lib64/R/library/RANN/libs/symbols.rds
+/usr/lib64/R/library/RANN/tests/testthat.R
+/usr/lib64/R/library/RANN/tests/testthat/test-nn.R
 
 %files lib
 %defattr(-,root,root,-)
