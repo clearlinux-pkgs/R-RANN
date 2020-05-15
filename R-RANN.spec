@@ -4,26 +4,21 @@
 #
 Name     : R-RANN
 Version  : 2.6.1
-Release  : 27
+Release  : 28
 URL      : https://cran.r-project.org/src/contrib/RANN_2.6.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/RANN_2.6.1.tar.gz
 Summary  : Fast Nearest Neighbour Search (Wraps ANN Library) Using L2
 Group    : Development/Tools
 License  : GPL-3.0 LGPL-2.1
 Requires: R-RANN-lib = %{version}-%{release}
-BuildRequires : R-assertthat
-BuildRequires : R-cli
-BuildRequires : R-rlang
-BuildRequires : R-withr
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
-# RANN
-[![Release Version](https://img.shields.io/github/release/jefferis/RANN.svg)](https://github.com/jefferis/RANN/releases/latest)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/RANN)](https://CRAN.R-project.org/package=RANN)
-[![Build Status](https://travis-ci.org/jefferis/RANN.svg)](https://travis-ci.org/jefferis/RANN)
-[![Downloads](http://cranlogs.r-pkg.org/badges/RANN?color=brightgreen)](http://www.r-pkg.org/pkg/RANN)
+in O(N log N) time using Arya and Mount's ANN library (v1.1.3). There is
+    support for approximate as well as exact searches, fixed radius searches
+    and 'bd' as well as 'kd' trees. The distance is computed using the L2
+    (Euclidean) metric. Please see package 'RANN.L1' for the same
+    functionality using the L1 (Manhattan, taxicab) metric.
 
 %package lib
 Summary: lib components for the R-RANN package.
@@ -35,21 +30,22 @@ lib components for the R-RANN package.
 
 %prep
 %setup -q -c -n RANN
+cd %{_builddir}/RANN
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571883230
+export SOURCE_DATE_EPOCH=1589570620
 
 %install
-export SOURCE_DATE_EPOCH=1571883230
+export SOURCE_DATE_EPOCH=1589570620
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
